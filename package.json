@@ -3,8 +3,14 @@
   "version": "0.0.0",
   "license": "AGPL-3.0-only",
   "private": true,
+  "type": "module",
   "scripts": {
-    "lint": "node --check tests/smoke.test.js",
-    "test": "node --test tests/smoke.test.js"
+    "lint": "tsc --noEmit",
+    "test": "tsx --test tests/*.test.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
   }
 }
