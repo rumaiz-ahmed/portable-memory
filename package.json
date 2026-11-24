@@ -23,5 +23,10 @@
   },
   "lint-staged": {
     "*": "secretlint"
+  },
+  "dependencies": {
+    "@t3-oss/env-core": "^0.13.11",
+    "openai": "^7.64.0",
+    "zod": "^4.6.7"
   }
 }
