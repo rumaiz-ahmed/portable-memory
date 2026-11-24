@@ -7,7 +7,7 @@ export const env = createEnv({
   server: {
     LLM_BASE_URL: z.url().optional(),
     LLM_API_KEY: z.string().default("not-needed"), // local servers need no key
-    LLM_MODEL: z.string(),
+    LLM_MODEL: z.string().optional(),
   },
   runtimeEnv: process.env,
   emptyStringAsUndefined: true,
