@@ -1,0 +1,10 @@
+{
+  "name": "portable-memory",
+  "version": "0.0.0",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "lint": "node --check tests/smoke.test.js",
+    "test": "node --test tests/smoke.test.js"
+  }
+}
