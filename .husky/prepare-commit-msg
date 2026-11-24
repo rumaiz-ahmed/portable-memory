@@ -1,0 +1,3 @@
+# Add "Signed-off-by: Name <email>" unless the commit already has it.
+git interpret-trailers --in-place --if-exists doNothing \
+  --trailer "Signed-off-by: $(git config user.name) <$(git config user.email)>" "$1"

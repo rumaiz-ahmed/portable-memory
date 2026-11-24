@@ -6,15 +6,27 @@ on:
 permissions:
   contents: read
 jobs:
-  test:
+  check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v7
       - uses: actions/checkout@v7
-      - uses: actions/setup-node@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
+          cache: npm
       - run: npm ci
-      - run: npm run lint
-      - run: npm test
+      - name: Secret scan
+        run: npm run secretlint
+      - name: Type check
+        run: npx tsc --noEmit
+      - name: Tests
+        run: npm test
+      - name: Nothing private is tracked
+        run: |
+          bad=$(git ls-files memory/private | grep -v '^memory/private/\.gitkeep$' || true)
+          if [ -n "$bad" ]; then echo "Tracked private files:"; echo "$bad"; exit 1; fi
+      - name: Commit messages
+        if: github.event_name == 'pull_request'
+        run: npx commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }}

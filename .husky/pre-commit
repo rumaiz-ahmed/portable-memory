@@ -1,0 +1,9 @@
+# Block private memory and real .env files from ever being committed.
+staged=$(git diff --cached --name-only --diff-filter=ACMR)
+bad=$(echo "$staged" | grep -E '^memory/private/|(^|/)\.env($|\.)' | grep -vE '^memory/private/\.gitkeep$|(^|/)\.env\.example$' || true)
+if [ -n "$bad" ]; then
+  echo "Refusing to commit private files:" >&2
+  echo "$bad" >&2
+  exit 1
+fi
+npx --no -- lint-staged
