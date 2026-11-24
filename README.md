@@ -26,4 +26,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md). Questions and ideas go in GitHub Discuss
 
 ## License
 
-[MIT](LICENSE)
+[AGPL-3.0](LICENSE)
