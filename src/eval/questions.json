@@ -1,0 +1,12 @@
+[
+  { "id": "mascot", "question": "What is Lantern's mascot called?", "expected": ["Pip"] },
+  { "id": "db", "question": "Which database did Lantern choose?", "expected": ["SQLite", "Turso"] },
+  { "id": "auth", "question": "How do users log in to Lantern, and which service sends the login emails?", "expected": ["magic link", "Resend"] },
+  { "id": "pro-year", "question": "How much does Lantern Pro cost per year?", "expected": ["$36"] },
+  { "id": "launch", "question": "When is Lantern's target launch date?", "expected": ["February 2027"] },
+  { "id": "designer", "question": "Who is Lantern's part-time designer?", "expected": ["Maya"] },
+  { "id": "color", "question": "What is Lantern's main color?", "expected": ["#1F5D4A"] },
+  { "id": "trick-region", "question": "What server region does Lantern use?", "expected": ["don't know"] },
+  { "id": "trick-payments", "question": "Which payment processor handles Lantern Pro subscriptions?", "expected": ["don't know"] },
+  { "id": "trick-users", "question": "How many active users does Lantern have?", "expected": ["don't know"] }
+]
