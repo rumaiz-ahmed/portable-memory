@@ -4,7 +4,7 @@ import type { Note } from "./memory.js";
 // inside the text so a note can't break out of its block.
 // shortcut: this lowers prompt-injection risk, it can't remove it; add allowlisting if notes ever come from untrusted sources.
 const wrap = (n: Note) =>
-  `<note name="${n.name}">\n${n.text.replace(/<\/note/gi, "<\/note")}\n</note>`;
+  `<note name="${n.name.replace(/["<>]/g, "_")}">\n${n.text.replace(/<\/note/gi, "<\/note")}\n</note>`;
 
 export function buildPrompt(notes: Note[], question: string): string {
   if (notes.length === 0) return question;
