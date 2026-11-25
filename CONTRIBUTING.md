@@ -36,4 +36,4 @@ Every commit needs a DCO `Signed-off-by:` line. The hooks add it for you; `git c
 Hooks also scan staged files for secrets and block anything in `memory/private/` or real `.env` files.
 Before a push they run `tsc --noEmit` and the tests.
 
-CI enforces the same rules (secret scan, types, tests, commit messages), so skipping hooks won't get a PR merged.
+CI enforces the same rules (secret scan, types, tests, commit messages), with a narrow exception for Dependabot's generated `chore(deps-dev): Bump ...` subjects. These commits still require a DCO `Signed-off-by:` trailer, so skipping hooks won't get a PR merged.
