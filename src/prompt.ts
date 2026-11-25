@@ -1,10 +1,11 @@
 import type { Note } from "./memory.js";
 
-// Notes are untrusted data: wrap each one in tags and neutralise any closing tag
-// inside the text so a note can't break out of its block.
-// shortcut: this lowers prompt-injection risk, it can't remove it; add allowlisting if notes ever come from untrusted sources.
+// Notes are untrusted data: escape & and < so note text can't contain tags at all,
+// then wrap each note in its own block.
+// shortcut: this lowers prompt-injection risk, it can't remove it (text like "ignore the above" still reaches the model); add allowlisting if notes ever come from untrusted sources.
+const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
 const wrap = (n: Note) =>
-  `<note name="${n.name.replace(/["<>]/g, "_")}">\n${n.text.replace(/<\/note/gi, "&lt;/note")}\n</note>`;
+  `<note name="${esc(n.name).replace(/"/g, "&quot;")}">\n${esc(n.text)}\n</note>`;
 
 export function buildPrompt(notes: Note[], question: string): string {
   if (notes.length === 0) return question;
